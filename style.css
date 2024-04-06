@@ -23,7 +23,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5%;
+    gap: 3%;
     background-color: rgba(216, 255, 157, 0.772);
     border-radius: 4%;
     font-size: 200%;
@@ -34,18 +34,45 @@
     text-align: center;
     width: 90%;
     height: 10%;
-    border: 2px solid green;
+    /* border: 2px solid green; */
+}
+
+#iptSearch{
+    width: 50%;
+    padding: 1%;
+    font-size: 60%;
+    border: none;
+    border-radius: 10px;
+}
+
+#searchBtn{
+    font-size: 60%;
+    font-weight: 500;
+    padding: 1%;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#locBtn{
+    width: 60%;
+    font-size: 60%;
+    font-weight: 500;
+    padding: 1%;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
 }
 
 .temp{
     width: 90%;
-    height: 70%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 5%;
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
 }
 
 .tempDetails{
@@ -54,6 +81,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30%;
-    border: 2px solid black;
+    gap: 20%;
+    /* border: 2px solid black; */
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
 }
