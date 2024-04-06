@@ -1,2 +1,7 @@
 let searchBtn = document.getElementById('searchBtn')
-let iptSearch = document.getElementById('iptSearch')
+let cityName = document.getElementById('cityName')
+let locBtn = document.getElementById('locBtn')
+
+searchBtn.addEventListener('click', () => {
+    console.log(cityName.value)
+})
