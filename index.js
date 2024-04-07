@@ -4,10 +4,26 @@ let locBtn = document.getElementById('locBtn')
 let temp = document.getElementById('temp')
 const API_KEY = '706ae467772ace5e81d2cb08c394ca46'
 
-async function fetchData(city){
+async function fetchDataByCity(city){
     try {
         cityName.value = ''
         let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
+        let result = await res.json()
+        if(result.message){
+            temp.innerHTML = `<h1>${city} ${result.message}</h1>`
+        }
+        else{
+            displayWeather(result)
+        }
+    } catch (err) {
+        console.log(err.message)
+    }
+}
+
+async function fetchDataByCoordinates(lati, longi){
+    try {
+        cityName.value = ''
+        let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lati}&lon=${longi}&appid=${API_KEY}&units=metric`)
         let result = await res.json()
         if(result.message){
             temp.innerHTML = `<h1>${city} ${result.message}</h1>`
@@ -25,14 +41,16 @@ searchBtn.addEventListener('click', (e) => {
     if (cityName.value == '') {
         alert("Please enter a city name")
     } else {
-        fetchData(cityName.value)
+        fetchDataByCity(cityName.value)
     }
 })
 
-function displayWeather({name, main, wind}){
-    div = `<div class="weatherInfo">
+function displayWeather({name, main, wind, weather}){
+    temp.innerHTML = `<div class="weatherInfo">
                 <h1>${main.temp}°C</h1>
-                <p>${name}</p>
+                <img src='https://openweathermap.org/img/w/${weather[0].icon}.png'>
+                <p>${weather[0].description}</p>
+                <p id='cName'>${name}</p>
                 <div class="tempDetails">
                     <div class="details">
                         <p>Wind</p>
@@ -48,5 +66,12 @@ function displayWeather({name, main, wind}){
                     </div>
                 </div>
             </div>`
-            temp.innerHTML = div
 }
+
+document.getElementById('currLocBtn').addEventListener('click', () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+        let lati = position.coords.latitude
+        let longi = position.coords.longitude
+        fetchDataByCoordinates(lati, longi)
+    })
+})
